@@ -193,17 +193,46 @@ dialog::backdrop{background:rgba(8,6,3,.72);backdrop-filter:blur(2px)}
 .card::after{content:"";position:absolute;bottom:11px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#3a2414;box-shadow:inset 0 2px 3px rgba(0,0,0,.7)}
 .card.plain{background-image:none;line-height:1.45;padding-bottom:20px}
 .card.plain::after{display:none}
-.card .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:2px solid var(--red);margin-bottom:0}
+.card .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;height:28px;box-shadow:inset 0 -2px 0 var(--red);margin-bottom:0}
+.card.plain .hd{height:auto;box-shadow:none;border-bottom:2px solid var(--red)}
 .card .hd small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7b7464}
 .card .hd b{font-size:20px}
 .ln{display:flex;gap:8px;align-items:baseline}
 .ln label{flex:none;color:#7b7464;font-size:13px}
 .ln input{flex:1;min-width:0;border:none;background:none;outline:none;font:15px/28px var(--type);color:var(--typed);padding:0;height:28px}
+#iName{font-weight:700;font-size:16px}#iDossier{font-style:italic}
 .ln input[type=date]{max-width:180px}
 .card textarea{display:block;width:100%;border:none;background:none;outline:none;resize:vertical;font:15px/28px var(--type);color:var(--typed);padding:0;min-height:112px}
 .card input::placeholder,.card textarea::placeholder{color:#b3aa94}
-.sugg{display:flex;gap:5px;flex-wrap:wrap;padding:4px 0}
-.sugg button{border:1px solid #cfc5ab;background:none;font:12px/1.4 var(--type);color:#5c5a52;padding:1px 7px;border-radius:2px}
+.sugg{display:flex;gap:0 5px;flex-wrap:wrap;align-items:center}
+.sugg button{height:22px;margin:3px 0;border:1px solid #cfc5ab;background:none;font:12px/1 var(--type);color:#5c5a52;padding:0 7px;border-radius:2px}
+.sec{font:700 11px/28px var(--type);letter-spacing:.18em;text-transform:uppercase;color:var(--red);height:28px}
+.card textarea.short{min-height:56px}
+.works{display:grid}
+.work{display:grid;grid-template-columns:14px 1fr 1fr 24px;column-gap:6px;align-items:center}
+.work::before{content:"▸";grid-row:1;grid-column:1;color:var(--red);font:12px/28px var(--type)}
+.work input{border:none;background:none;outline:none;font:15px/28px var(--type);color:var(--typed);padding:0;height:28px;min-width:0}
+.work .wn{grid-row:1;grid-column:2/4;font-weight:700}
+.work .wa{grid-row:2;grid-column:2;font-size:13px}
+.work .wl{grid-row:2;grid-column:3/5;font-size:13px}
+.work .wx{grid-row:1;grid-column:4;border:none;background:none;color:#b3aa94;font:18px/28px var(--type);padding:0;height:28px}
+.work .wx:hover{color:var(--red)}
+.work.lab{grid-template-columns:64px 1fr 1fr}
+.work.lab::before{content:none}
+.work.lab .wlab{grid-row:1;grid-column:1;font:11px/28px var(--type);color:#7b7464;text-transform:uppercase;letter-spacing:.08em}
+.work.lab .wn{grid-column:2/4}.work.lab .wl{grid-column:3}
+.addw{display:block;height:28px;border:none;background:none;padding:0 0 0 20px;font:13px/28px var(--type);color:var(--red);text-align:left}
+.work .wl{border-left:1px solid #ddd3b8;padding-left:8px}
+@media (max-width:540px){
+  .work{grid-template-columns:14px 1fr 24px}
+  .work .wn{grid-column:2/3}.work .wx{grid-column:3}
+  .work .wa{grid-row:2;grid-column:2/4}.work .wl{grid-row:3;grid-column:2/4;border-left:none;padding-left:0}
+  .work.lab{grid-template-columns:64px 1fr}
+  .work.lab .wn{grid-column:2}.work.lab .wa{grid-column:2}.work.lab .wl{grid-column:2}
+}
+.icard .wk{display:block;font-size:12.5px;color:#4a4a58}
+.icard .wk::before{content:"▸ ";color:var(--red)}
+.icard .ds{display:block;font-size:12.5px;color:#5c5a52;font-style:italic}
 .stamp{position:absolute;right:20px;bottom:48px;transform:rotate(-13deg);border:3px double var(--red);color:var(--red);font:700 12px/1.15 var(--type);
   letter-spacing:.16em;padding:5px 10px 4px;text-align:center;opacity:.82;mix-blend-mode:multiply;pointer-events:none}
 .stamp b{display:block;font-size:22px;letter-spacing:.2em}
@@ -293,12 +322,25 @@ code{font:12px var(--type);background:rgba(0,0,0,.06);padding:0 3px}
       </div>
       <div class="card" id="iCard">
         <div class="hd"><small id="iMag"></small><b id="iNum"></b></div>
-        <div class="ln"><label for="iName">Título:</label><input id="iName" placeholder="monográfico o tema de tapa"></div>
-        <div class="ln"><label for="iTopics">Temas:</label><input id="iTopics" placeholder="vivienda, ladrillo, Osaka…" autocapitalize="off"></div>
+        <div class="sec">Monográfico</div>
+        <div class="ln"><input id="iName" placeholder="estudio o tema de tapa · ej. Vivas Arquitectos" aria-label="Monográfico"></div>
+        <div class="ln"><input id="iSub" placeholder="subtítulo · ej. Pragmática residencial" aria-label="Subtítulo"></div>
+        <div class="works" id="iWorks"></div>
+        <button type="button" class="addw" data-list="iWorks">+ obra</button>
+        <div class="sec">Dossier</div>
+        <div class="ln"><input id="iDossier" placeholder="título · ej. Suiza extrema" aria-label="Título del dossier"></div>
+        <div class="works" id="iDWorks"></div>
+        <button type="button" class="addw" data-list="iDWorks">+ obra</button>
+        <div class="sec">Del mes</div>
+        <div class="works" id="iMes"></div>
+        <div class="sec">Arte, cultura y libros</div>
+        <textarea id="iCult" class="short" placeholder="un artículo por renglón: título — autor" aria-label="Arte, cultura y libros"></textarea>
+        <div class="sec">Temas</div>
+        <div class="ln"><input id="iTopics" placeholder="vivienda social, prefabricación, Barcelona…" autocapitalize="off" aria-label="Temas"></div>
         <div class="sugg" id="iSuggest"></div>
         <div class="ln" id="iDateRow"><label for="iDate">Leída el:</label><input type="date" id="iDate"></div>
-        <div class="ln"><label for="iNotes">Notas:</label></div>
-        <textarea id="iNotes" placeholder="artículos, páginas, ideas para citar…"></textarea>
+        <div class="sec">Notas</div>
+        <textarea id="iNotes" placeholder="páginas, ideas para citar, qué me llevo…" aria-label="Notas"></textarea>
         <div class="stamp hidden" id="iStamp"><b>LEÍDA</b><span id="iStampDate"></span></div>
       </div>
     </div>
@@ -426,7 +468,7 @@ function toast(msg, actLabel, act) {
 }
 
 /* ================= estado ================= */
-function blank() { return {v: 2, mags: [{id: 'av', name: 'Arquitectura Viva', min: 1, max: 284, c: 0, u: 0, issues: {}}]}; }
+function blank() { return {v: 2, mags: [{id: 'av', name: 'Arquitectura Viva', min: 1, max: 287, c: 0, u: 0, issues: {}}]}; }
 function fixup(s) {
   s.v = 2;
   s.mags = (Array.isArray(s.mags) ? s.mags : []).filter(m => m && m.id);
@@ -469,7 +511,7 @@ function issue(m, n, create) {
   return m.issues[k];
 }
 const touch = x => { x.u = Date.now(); };
-const hasData = i => i && (i.name || (i.topics && i.topics.length) || i.notes);
+const hasData = i => i && (i.name || i.dossier || i.sub || i.cult || (i.works && i.works.length) || (i.dworks && i.dworks.length) || i.mes || (i.topics && i.topics.length) || i.notes);
 function parseTopics(s) {
   const seen = new Set(), out = [];
   for (let x of s.split(/[,;\n]/)) { x = x.trim(); const k = norm(x); if (x && !seen.has(k)) { seen.add(k); out.push(x); } }
@@ -813,7 +855,7 @@ function renderExhib() {
 function volHTML(m, n, cls) {
   const i = m.issues[String(n)], read = !!(i && i.read), h = heightOf(m, n);
   const c = read ? spineColor(m, n, i) : '', t = read ? textOn(c) : '';
-  const title = i && i.name ? i.name : '';
+  const title = i ? (i.name || i.dossier || '') : '';
   return '<button class="vol' + (read ? '' : ' ghost') + (cls ? ' ' + cls : '') + '" data-n="' + n + '" style="--h:' + h + (read ? ';--c:' + c + ';--t:' + t : '') + '"'
     + ' aria-label="' + esc(m.name) + ' número ' + n + (read ? ', leída' : '') + (title ? ', ' + esc(title) : '') + '" title="Nº ' + n + (title ? ' · ' + esc(title) : '') + '">'
     + (hasData(i) ? '<span class="mark"></span>' : '')
@@ -837,13 +879,25 @@ function renderShelf(matchFn, filtering, scrollTo) {
   }
   observeNeeds();
 }
+const MES = [['casa', 'Casa'], ['interior', 'Interior'], ['exterior', 'Exterior']];
+const wtxt = w => [w.n, w.a, w.l].filter(Boolean).join(' ');
+function allWorks(i) {
+  const out = [];
+  for (const w of (i.works || [])) out.push({...w, s: 'mono'});
+  for (const w of (i.dworks || [])) out.push({...w, s: 'dossier'});
+  if (i.mes) for (const [k, lab] of MES) if (i.mes[k]) out.push({...i.mes[k], s: lab.toLowerCase() + ' del mes'});
+  return out;
+}
+function issueText(i) {
+  return [i.name, i.sub, i.dossier, i.cult, i.notes, i.date, (i.topics || []).join(' '), allWorks(i).map(wtxt).join(' ')].filter(Boolean).join(' ');
+}
 function search() {
   const toks = norm(ui.q).split(/\s+/).filter(Boolean), res = [];
   for (const m of (ui.all ? visibleMags() : [curMag()])) {
     for (const [k, i] of Object.entries(m.issues)) {
       if (+k < m.min || +k > m.max) continue;
       if ((ui.f === 'read' && !i.read) || (ui.f === 'todo' && i.read)) continue;
-      const hay = norm([k, i.name, (i.topics || []).join(' '), i.notes, i.date].join(' '));
+      const hay = norm(k + ' ' + issueText(i));
       if (toks.every(t => hay.includes(t))) res.push({m, n: +k, i});
     }
   }
@@ -872,7 +926,10 @@ function renderDrawer(res, toks) {
     if (nt.length > 150) { const st = Math.max(0, (hit || 0) - 40); nt = (st ? '…' : '') + nt.slice(st, st + 150) + '…'; }
     return '<button class="icard" data-m="' + esc(r.m.id) + '" data-n="' + r.n + '">'
       + '<span class="ih"><span class="im">' + esc(r.m.name) + '</span><b>Nº ' + r.n + '</b></span>'
-      + (r.i.name ? '<span class="it" style="display:block">' + hl(r.i.name, toks) + '</span>' : '')
+      + (r.i.name ? '<span class="it" style="display:block">' + hl(r.i.name + (r.i.sub ? '. ' + r.i.sub : ''), toks) + '</span>' : '')
+      + (r.i.dossier ? '<span class="ds">Dossier: ' + hl(r.i.dossier, toks) + '</span>' : '')
+      + allWorks(r.i).filter(w => toks.some(t => norm(wtxt(w)).includes(t))).slice(0, 4)
+          .map(w => '<span class="wk">' + hl(w.n || '', toks) + (w.a || w.l ? ' — ' + hl([w.a, w.l].filter(Boolean).join(', '), toks) : '') + '</span>').join('')
       + (tg ? '<span class="tg" style="display:block">' + tg + '</span>' : '')
       + (nt ? '<span class="nt" style="display:block">' + hl(nt, toks) + '</span>' : '')
       + (r.i.read ? '<span class="st">LEÍDA</span>' : '') + '</button>';
@@ -907,8 +964,11 @@ function openIssue(mid, n) {
   cur = {mag: mid, n};
   const i = issue(m, n, false) || {};
   $('iMag').textContent = m.name; $('iNum').textContent = 'Nº ' + n;
-  $('iDate').value = i.date || ''; $('iName').value = i.name || '';
+  $('iDate').value = i.date || ''; $('iName').value = i.name || ''; $('iSub').value = i.sub || '';
+  $('iDossier').value = i.dossier || ''; $('iCult').value = i.cult || '';
   $('iTopics').value = (i.topics || []).join(', '); $('iNotes').value = i.notes || '';
+  fillWorks($('iWorks'), i.works); fillWorks($('iDWorks'), i.dworks);
+  $('iMes').innerHTML = MES.map(([k, lab]) => workRow((i.mes || {})[k] || {}, lab)).join('');
   refreshSeal(false); refreshIssueCover(); suggest();
   $('dlgIssue').showModal();
 }
@@ -946,14 +1006,56 @@ function suggest() {
   $('iSuggest').innerHTML = allTags(m).filter(t => !have.includes(norm(t.t))).slice(0, 10)
     .map(t => '<button type="button" data-add="' + esc(t.t) + '">+ ' + esc(t.t) + '</button>').join('');
 }
+function workRow(w, label) {
+  const v = x => ' value="' + esc(x || '') + '"';
+  return '<div class="work' + (label ? ' lab' : '') + '">' + (label ? '<span class="wlab">' + label + '</span>' : '')
+    + '<input class="wn" placeholder="' + (label ? label.toLowerCase() + ' del mes' : 'obra') + '"' + v(w.n) + ' aria-label="Obra">'
+    + (label ? '' : '<button type="button" class="wx" aria-label="Quitar obra">×</button>')
+    + '<input class="wa" placeholder="arquitectos"' + v(w.a) + ' aria-label="Arquitectos">'
+    + '<input class="wl" placeholder="lugar"' + v(w.l) + ' aria-label="Lugar"></div>';
+}
+function fillWorks(el, works) { el.innerHTML = (works && works.length ? works : [{}]).map(w => workRow(w)).join(''); }
+function readWorks(el) {
+  return [...el.querySelectorAll('.work')].map(r => ({n: r.querySelector('.wn').value.trim(), a: r.querySelector('.wa').value.trim(), l: r.querySelector('.wl').value.trim()}))
+    .map(w => { for (const k of ['n', 'a', 'l']) if (!w[k]) delete w[k]; return w; }).filter(w => w.n || w.a || w.l);
+}
+function setOrDel(o, k, v) { if (v === '' || v == null || (Array.isArray(v) && !v.length) || (typeof v === 'object' && !Array.isArray(v) && !Object.keys(v).length)) delete o[k]; else o[k] = v; }
 function saveFields() {
   const m = mag(cur.mag); if (!m) return;
   const i = issue(m, cur.n, true);
   i.date = $('iDate').value; i.name = $('iName').value.trim();
+  setOrDel(i, 'sub', $('iSub').value.trim());
+  setOrDel(i, 'dossier', $('iDossier').value.trim());
+  setOrDel(i, 'cult', $('iCult').value.replace(/\s+$/, ''));
+  setOrDel(i, 'works', readWorks($('iWorks')));
+  setOrDel(i, 'dworks', readWorks($('iDWorks')));
+  const mes = {}, rows = readWorksKeep($('iMes'));
+  MES.forEach(([k], idx) => { if (rows[idx]) mes[k] = rows[idx]; });
+  setOrDel(i, 'mes', mes);
   i.topics = parseTopics($('iTopics').value); i.notes = $('iNotes').value;
   touch(i); changed();
 }
-for (const id of ['iDate', 'iName', 'iTopics', 'iNotes']) {
+function readWorksKeep(el) {
+  return [...el.querySelectorAll('.work')].map(r => {
+    const w = {n: r.querySelector('.wn').value.trim(), a: r.querySelector('.wa').value.trim(), l: r.querySelector('.wl').value.trim()};
+    for (const k of ['n', 'a', 'l']) if (!w[k]) delete w[k];
+    return Object.keys(w).length ? w : null;
+  });
+}
+$('iCard').addEventListener('input', e => { if (e.target.closest('.work')) saveFields(); });
+$('iCard').addEventListener('click', e => {
+  const x = e.target.closest('.wx');
+  if (x) { const list = x.closest('.works'), row = x.closest('.work'); row.remove(); if (!list.children.length) fillWorks(list, []); saveFields(); return; }
+  const a = e.target.closest('.addw');
+  if (a) { const list = $(a.dataset.list); list.insertAdjacentHTML('beforeend', workRow({})); list.lastElementChild.querySelector('.wn').focus(); }
+});
+$('iCard').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !e.target.closest('.work')) return;
+  e.preventDefault();
+  const ins = [...$('iCard').querySelectorAll('input')], k = ins.indexOf(e.target);
+  if (ins[k + 1]) ins[k + 1].focus();
+});
+for (const id of ['iDate', 'iName', 'iSub', 'iDossier', 'iCult', 'iTopics', 'iNotes']) {
   $(id).addEventListener('input', () => { saveFields(); if (id === 'iTopics') suggest(); if (id === 'iDate') refreshSeal(false); });
 }
 $('iSeal').onclick = () => {
