@@ -93,6 +93,7 @@ button{cursor:pointer}
 .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .tool{background:rgba(239,230,207,.06);border:1px solid rgba(239,230,207,.22);color:var(--cream);font:13px var(--type);padding:6px 10px;border-radius:2px}
 .tool[aria-pressed=true]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.tool#bHelp[aria-pressed=true]{background:var(--paper);color:var(--ink)}
 .tool.stampbtn[aria-pressed=true]{background:var(--red);color:#fff;border-color:var(--red)}
 .chk{display:flex;align-items:center;gap:6px;font:13px var(--type);color:var(--dim)}
 .chk input{accent-color:var(--red)}
@@ -156,18 +157,39 @@ body.stamping .vol{cursor:crosshair}
 /* ---------- cajón del fichero (resultados) ---------- */
 .drawer{margin:0 12px;padding:16px 12px 14px;border-radius:0 0 4px 4px;background:linear-gradient(#1c1008,#2d1b0d);box-shadow:inset 0 10px 14px rgba(0,0,0,.75),inset 4px 0 0 #4a2c17,inset -4px 0 0 #4a2c17,inset 0 -4px 0 #4a2c17,0 8px 14px rgba(0,0,0,.45)}
 .drawer .sect{color:var(--brass);margin-bottom:10px}
-.icards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.icard{position:relative;background:var(--paper-l);color:var(--typed);font:14px/1.45 var(--type);text-align:left;border:none;padding:10px 12px 22px;border-radius:2px;box-shadow:0 2px 0 #d8ceb4,0 4px 8px rgba(0,0,0,.4);display:block;width:100%}
+.icards{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.icard{position:relative;background:var(--paper-l);color:var(--typed);font:14px/1.45 var(--type);text-align:left;border:none;padding:10px 12px 30px;border-radius:2px;box-shadow:0 2px 0 #d8ceb4,0 4px 8px rgba(0,0,0,.4);display:block;width:100%}
 .icard::after{content:"";position:absolute;bottom:6px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--wood-dd)}
 .icard .ih{display:flex;justify-content:space-between;gap:8px;border-bottom:1.5px solid var(--red);padding-bottom:3px;margin-bottom:5px}
 .icard .ih b{font-size:16px}
 .icard .im{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7b7464}
 .icard .it{font-weight:700}
 .icard .tg{font-size:12.5px;color:#4a4a58}
-.icard .tg em{font-style:normal;background:rgba(179,38,30,.13);color:var(--red)}
+.icard em{font-style:normal;background:rgba(179,38,30,.13);color:var(--red)}
 .icard .nt{font-size:12.5px;color:#5c5a52;margin-top:4px;overflow-wrap:anywhere}
-.icard .st{position:absolute;right:10px;bottom:22px;transform:rotate(-10deg);border:2px solid var(--red);color:var(--red);font:700 10px var(--type);letter-spacing:.14em;padding:1px 5px;opacity:.8}
-.noresult{font:14px var(--type);color:var(--dim)}
+.icard .st{position:absolute;right:10px;bottom:6px;transform:rotate(-10deg);border:2px solid var(--red);color:var(--red);font:700 10px var(--type);letter-spacing:.14em;padding:1px 5px;opacity:.8}
+.noresult{font:14px var(--type);color:var(--dim);grid-column:1/-1}
+.noresult b{color:var(--brass);font-weight:400}
+.fix{margin:-4px 0 10px;font:12px var(--type);color:var(--dim)}
+.fix:empty{display:none}
+.fix b{color:var(--brass);font-weight:400}
+.icard .it,.icard .ds,.icard .tg,.icard .nt{display:block}
+.icard .wk small,.icard .nt small{color:#9a917c;font-size:11px}
+.helpcard{background:var(--paper);color:var(--typed);font:13px/1.55 var(--type);padding:10px 14px;border-radius:2px;box-shadow:0 3px 8px rgba(0,0,0,.4);transform:rotate(-.3deg)}
+.helpcard b{display:block;color:var(--red);letter-spacing:.08em;margin-bottom:4px}
+.helpcard ul{margin:0;padding-left:18px}
+.helpcard button{border:1px solid #cfc5ab;background:#fff8;font:12px var(--type);color:var(--typed);padding:0 6px;border-radius:2px;margin:1px 0}
+.helpcard code{background:rgba(0,0,0,.06)}
+.segtabs{display:flex;border:1.5px solid var(--typed);margin:12px 0 10px}
+.segtabs button{flex:1;background:none;border:none;font:13px var(--type);padding:7px 4px;color:var(--typed)}
+.segtabs button[aria-pressed=true]{background:var(--typed);color:var(--paper-l)}
+.idxlist{max-height:52vh;overflow:auto;margin-bottom:8px}
+.guide{position:sticky;top:0;background:var(--paper-l);padding:6px 0 2px;z-index:1}
+.guide span{display:inline-block;background:var(--red);color:#fff;font:700 12px var(--type);padding:1px 10px;border-radius:3px 3px 0 0}
+.irow{display:flex;gap:8px;align-items:baseline;justify-content:space-between;border-bottom:1px solid #e4dbc4;padding:5px 0}
+.iname{border:none;background:none;font:14px var(--type);color:var(--typed);text-align:left;padding:0;text-decoration:underline;text-decoration-color:#d4c9ad;text-underline-offset:3px}
+.irefs{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.iref{border:1px solid #cfc5ab;background:none;font:12px var(--type);color:var(--red);padding:0 5px;border-radius:2px}
 
 /* ---------- mostrador ---------- */
 .counter{margin-top:30px;border-top:1px solid rgba(239,230,207,.14);padding-top:14px;display:flex;gap:8px;flex-wrap:wrap}
@@ -281,16 +303,29 @@ code{font:12px var(--type);background:rgba(0,0,0,.06);padding:0 3px}
       </div>
       <div class="drawer hidden" id="drawer">
         <h3 class="sect" id="drawerTitle"></h3>
+        <p class="fix" id="drawerFix"></p>
         <div class="icards" id="icards"></div>
       </div>
     </div>
     <div class="tools">
+      <button class="tool" id="bIndex">☰ Índices</button>
+      <button class="tool" id="bHelp" aria-pressed="false">? Cómo buscar</button>
       <button class="tool stampbtn" id="bStamp" aria-pressed="false">✦ Sello</button>
       <button class="tool" data-f="all" aria-pressed="true">Todas</button>
       <button class="tool" data-f="read" aria-pressed="false">Leídas</button>
       <button class="tool" data-f="todo" aria-pressed="false">Pendientes</button>
       <button class="tool" id="bSort"></button>
       <label class="chk"><input type="checkbox" id="allMags"> todos los estantes</label>
+    </div>
+    <div class="helpcard hidden" id="helpCard">
+      <b>Cómo buscar en el fichero</b>
+      <ul>
+        <li>Varias palabras: aparecen primero las fichas que tienen todas. <button data-try="vivienda barcelona">vivienda barcelona</button></li>
+        <li>Singular y plural dan lo mismo, y perdona una letra mal escrita: <button data-try="viviendas">viviendas</button> <button data-try="herzorg">herzorg</button></li>
+        <li>Frase exacta entre comillas: <button data-try='"suiza extrema"'>"suiza extrema"</button></li>
+        <li>Por campo: <button data-try="arq:herzog">arq:herzog</button> <button data-try="lugar:suiza">lugar:suiza</button> <button data-try="dossier:suiza">dossier:suiza</button> <button data-try="tema:ladrillo">tema:ladrillo</button>. También <code>obra:</code> <code>mono:</code> <code>nota:</code> <code>autor:</code> <code>fecha:2026</code></li>
+        <li>Solo un número: va directo a ese lomo. <code>/</code> enfoca el buscador y <code>Esc</code> lo borra.</li>
+      </ul>
     </div>
     <div class="tagrow" id="cloud"></div>
     <div class="banner hidden" id="stampBanner"><span>Sello en mano: tocá los lomos para sellarlos como leídos.</span><button id="bStampOff">Dejar el sello</button></div>
@@ -319,6 +354,7 @@ code{font:12px var(--type);background:rgba(0,0,0,.06);padding:0 3px}
           <button type="button" class="wbtn dng" id="iCoverDel">Quitar portada</button>
         </div>
         <input type="file" id="iCoverFile" accept="image/*" hidden>
+        <datalist id="dlArq"></datalist><datalist id="dlLug"></datalist>
       </div>
       <div class="card" id="iCard">
         <div class="hd"><small id="iMag"></small><b id="iNum"></b></div>
@@ -348,6 +384,22 @@ code{font:12px var(--type);background:rgba(0,0,0,.06);padding:0 3px}
       <button type="button" class="sello" id="iSeal">Sellar como leída</button>
       <button type="button" class="wbtn pri" id="iClose">Devolver al fichero</button>
     </div>
+  </div>
+</dialog>
+
+<!-- Índices -->
+<dialog id="dlgIndex">
+  <div class="deskdlg">
+    <div class="card plain">
+      <div class="hd"><small>Fichero</small><b>Índices</b></div>
+      <div class="segtabs" id="idxTabs">
+        <button data-k="arq" aria-pressed="true">Arquitectos</button><button data-k="lugar" aria-pressed="false">Lugares</button><button data-k="tema" aria-pressed="false">Temas</button>
+      </div>
+      <label class="f">Filtrar<input id="xFilter" autocomplete="off" spellcheck="false" placeholder="escribí para filtrar la lista"></label>
+      <div id="idxList" class="idxlist"></div>
+      <p class="hint">Tocá un nombre para buscarlo en todos los estantes, o un número para abrir la ficha.</p>
+    </div>
+    <div class="actions"><span></span><button class="wbtn pri" id="idxClose">Cerrar</button></div>
   </div>
 </dialog>
 
@@ -891,49 +943,177 @@ function allWorks(i) {
 function issueText(i) {
   return [i.name, i.sub, i.dossier, i.cult, i.notes, i.date, (i.topics || []).join(' '), allWorks(i).map(wtxt).join(' ')].filter(Boolean).join(' ');
 }
+/* ================= motor de búsqueda ================= */
+const WEIGHT = {num: 12, mono: 10, dossier: 9, tema: 8, obra: 7, arq: 7, sub: 6, lugar: 5, art: 3, nota: 2, fecha: 1};
+const FILTERS = {
+  arq: ['arq'], arquitecto: ['arq'], arquitectos: ['arq'], estudio: ['arq'], estudios: ['arq'],
+  lugar: ['lugar'], ciudad: ['lugar'], pais: ['lugar'], sitio: ['lugar'],
+  obra: ['obra'], obras: ['obra'], edificio: ['obra'],
+  dossier: ['dossier'], mono: ['mono', 'sub'], monografico: ['mono', 'sub'], titulo: ['mono', 'sub', 'dossier'],
+  tema: ['tema'], temas: ['tema'], nota: ['nota'], notas: ['nota'],
+  art: ['art'], articulo: ['art'], articulos: ['art'], libro: ['art'], libros: ['art'], autor: ['art'],
+  fecha: ['fecha'], leida: ['fecha'], num: ['num'], n: ['num']
+};
+const WORD_RE = /[\p{L}\p{N}]+/gu;
+const words = t => norm(t).match(WORD_RE) || [];
+function stem(w) {
+  if (/^\d+$/.test(w)) return w;
+  if (w.length > 4 && w.endsWith('ces')) return w.slice(0, -3) + 'z';
+  if (w.length > 3 && w.endsWith('s')) w = w.slice(0, -1);
+  if (w.length > 4 && /[aeo]$/.test(w)) w = w.slice(0, -1);
+  return w;
+}
+function dist(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  let prev2 = null, prev = Array.from({length: b.length + 1}, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i]; let rowMin = i;
+    for (let j = 1; j <= b.length; j++) {
+      let v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      if (prev2 && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, prev2[j - 2] + 1);
+      cur[j] = v; if (v < rowMin) rowMin = v;
+    }
+    if (rowMin > max) return max + 1;
+    prev2 = prev; prev = cur;
+  }
+  return prev[b.length];
+}
+function mkTok(raw) { return {raw, st: stem(raw)}; }
+const fuzzCache = new Map();
+/* calidad de coincidencia entre un término buscado y una palabra del texto: 0 = nada */
+function quality(q, w) {
+  if (w.raw === q.raw || w.st === q.st) return [1, false];
+  if (q.raw.length >= 2 && w.raw.startsWith(q.raw)) return [0.85, false];
+  if (q.raw.length >= 3 && w.raw.includes(q.raw)) return [0.55, false];
+  if (q.raw.length >= 5 && !/\d/.test(q.raw)) {
+    const k = q.raw.length >= 8 ? 2 : 1, key = q.st + '|' + w.st;
+    let d = fuzzCache.get(key);
+    if (d === undefined) { d = dist(q.st, w.st, k); fuzzCache.set(key, d); }
+    if (d <= k) return [0.6 - 0.1 * (d - 1), true];
+  }
+  return [0, false];
+}
+function parseQuery(q) {
+  const out = [], re = /([\p{L}]+):"([^"]*)"?|([\p{L}]+):(\S+)|"([^"]*)"?|(\S+)/gu;
+  let mt;
+  while ((mt = re.exec(q))) {
+    let key = mt[1] || mt[3], val = mt[2] ?? mt[4], phrase = mt[5], plain = mt[6];
+    let fields = null;
+    if (key) { fields = FILTERS[norm(key)] || null; if (!fields) { plain = key + ':' + val; key = null; } }
+    if (key && fields) {
+      if (mt[2] !== undefined && /\s/.test(val.trim())) out.push({fields, phrase: norm(val.trim()), label: key + ':"' + val + '"'});
+      else for (const w of words(val)) out.push({fields, tok: mkTok(w), label: key + ':' + w});
+    } else if (phrase !== undefined) {
+      const p = norm(phrase.trim()); if (!p) continue;
+      if (/\s/.test(p)) out.push({fields: null, phrase: p, label: '"' + phrase + '"'});
+      else out.push({fields: null, tok: mkTok(p), label: p});
+    } else if (plain) for (const w of words(plain)) out.push({fields: null, tok: mkTok(w), label: w});
+  }
+  return out;
+}
+function docFields(k, i) {
+  const f = [['num', String(k)], ['mono', i.name], ['sub', i.sub], ['dossier', i.dossier], ['art', i.cult], ['nota', i.notes], ['fecha', i.date]];
+  for (const t of (i.topics || [])) f.push(['tema', t]);
+  for (const w of allWorks(i)) { f.push(['obra', w.n]); f.push(['arq', w.a]); f.push(['lugar', w.l]); }
+  return f.filter(x => x[1]).map(([name, text]) => {
+    const ws = words(text).map(w => ({raw: w, st: stem(w)}));
+    return {name, text, n: norm(text), ws};
+  });
+}
+function scoreDoc(fields, clauses, fixes) {
+  let total = 0, hits = 0;
+  for (const c of clauses) {
+    let best = 0, bestFix = null;
+    for (const f of fields) {
+      if (c.fields && !c.fields.includes(f.name)) continue;
+      const W = WEIGHT[f.name] || 1;
+      if (c.phrase) { if (f.n.includes(c.phrase)) best = Math.max(best, W * 1.2); continue; }
+      if (f.name === 'num') { if (f.n === c.tok.raw) best = Math.max(best, W); continue; }
+      for (const w of f.ws) {
+        const [qv, fz] = quality(c.tok, w);
+        if (qv && W * qv > best) { best = W * qv; bestFix = fz ? w.raw : null; }
+      }
+    }
+    if (best > 0) { hits++; total += best; if (bestFix && fixes) fixes.set(c.tok.raw, bestFix); }
+  }
+  return {total, hits};
+}
 function search() {
-  const toks = norm(ui.q).split(/\s+/).filter(Boolean), res = [];
+  const clauses = parseQuery(ui.q), all = [], fixes = new Map();
+  if (!clauses.length) return {res: [], clauses, partial: false, fixes};
+  const plainQ = norm(ui.q.replace(/[\p{L}]+:("[^"]*"|\S+)/gu, '').replace(/"/g, '')).trim();
   for (const m of (ui.all ? visibleMags() : [curMag()])) {
     for (const [k, i] of Object.entries(m.issues)) {
       if (+k < m.min || +k > m.max) continue;
       if ((ui.f === 'read' && !i.read) || (ui.f === 'todo' && i.read)) continue;
-      const hay = norm(k + ' ' + issueText(i));
-      if (toks.every(t => hay.includes(t))) res.push({m, n: +k, i});
+      const fields = docFields(k, i);
+      const localFix = new Map(), sc = scoreDoc(fields, clauses, localFix);
+      if (!sc.hits) continue;
+      if (plainQ.includes(' ')) for (const f of fields) if (f.n.includes(plainQ)) { sc.total += (WEIGHT[f.name] || 1) * 0.8; break; }
+      all.push({m, n: +k, i, score: sc.total, hits: sc.hits, fix: localFix});
     }
   }
-  res.sort((a, b) => (a.m.c || 0) - (b.m.c || 0) || (ui.desc ? b.n - a.n : a.n - b.n));
-  return {res, toks};
+  let res = all.filter(r => r.hits === clauses.length), partial = false;
+  if (!res.length && clauses.length > 1) { res = all; partial = true; }
+  for (const r of res) for (const [a, b] of r.fix) fixes.set(a, b);
+  res.sort((a, b) => b.hits - a.hits || b.score - a.score || (a.m.c || 0) - (b.m.c || 0) || b.n - a.n);
+  return {res, clauses, partial, fixes};
 }
-function hl(text, toks) {
-  let out = esc(text);
-  for (const t of toks) {
-    if (t.length < 2) continue;
-    const src = norm(text); let idx = src.indexOf(t);
-    if (idx < 0) continue;
-    const raw = text.slice(idx, idx + t.length);
-    out = out.replace(esc(raw), '<em>' + esc(raw) + '</em>');
-  }
-  return out;
+/* resaltar palabras que coinciden con lo buscado */
+function hl(text, clauses) {
+  const toks = [];
+  for (const c of clauses) { if (c.tok) toks.push(c.tok); else if (c.phrase) for (const w of c.phrase.split(/\s+/)) toks.push(mkTok(w)); }
+  return String(text).split(/([\p{L}\p{N}]+)/u).map((part, idx) => {
+    if (idx % 2 === 0) return esc(part);
+    const w = {raw: norm(part)}; w.st = stem(w.raw);
+    return toks.some(t => quality(t, w)[0] > 0) ? '<em>' + esc(part) + '</em>' : esc(part);
+  }).join('');
 }
-function renderDrawer(res, toks) {
+function matches(text, clauses) {
+  if (!text) return false;
+  const n = norm(text), ws = words(text).map(w => ({raw: w, st: stem(w)}));
+  return clauses.some(c => c.phrase ? n.includes(c.phrase) : ws.some(w => quality(c.tok, w)[0] > 0));
+}
+function snippet(text, clauses, len = 150) {
+  const lines = String(text).split(/\n/);
+  const line = lines.find(l => matches(l, clauses)) || lines[0];
+  if (line.length <= len) return line;
+  const n = norm(line); let at = 0;
+  for (const c of clauses) { const s = c.phrase || c.tok.raw; const k = n.indexOf(s.slice(0, Math.max(3, s.length - 1))); if (k >= 0) { at = k; break; } }
+  const st = Math.max(0, at - 50);
+  return (st ? '…' : '') + line.slice(st, st + len) + (st + len < line.length ? '…' : '');
+}
+function renderDrawer(s) {
+  const {res, clauses, partial, fixes} = s, q = ui.q.trim();
   $('drawer').classList.remove('hidden');
-  $('drawerTitle').textContent = res.length ? res.length + ' ficha' + (res.length === 1 ? '' : 's') + ' para «' + ui.q.trim() + '»' : 'Sin fichas para «' + ui.q.trim() + '»';
-  if (!res.length) { $('icards').innerHTML = '<p class="noresult">La búsqueda mira el título, los temas y las notas que escribiste en cada ficha.</p>'; return; }
-  $('icards').innerHTML = res.slice(0, 60).map(r => {
-    const tg = (r.i.topics || []).map(t => hl(t, toks)).join(' · ');
-    let nt = r.i.notes || '';
-    const nn = norm(nt), hit = toks.map(t => nn.indexOf(t)).filter(x => x >= 0).sort((a, b) => a - b)[0];
-    if (nt.length > 150) { const st = Math.max(0, (hit || 0) - 40); nt = (st ? '…' : '') + nt.slice(st, st + 150) + '…'; }
+  let title = res.length
+    ? (partial ? 'Ninguna ficha tiene todo; ' + res.length + ' tiene' + (res.length === 1 ? '' : 'n') + ' parte de «' + q + '»'
+               : res.length + ' ficha' + (res.length === 1 ? '' : 's') + ' para «' + q + '»')
+    : 'Sin fichas para «' + q + '»';
+  $('drawerTitle').textContent = title;
+  $('drawerFix').innerHTML = fixes.size ? 'Incluye parecidas: ' + [...fixes].map(([a, b]) => '<i>' + esc(a) + '</i> → <b>' + esc(b) + '</b>').join(', ') : '';
+  if (!res.length) {
+    $('icards').innerHTML = '<p class="noresult">Busca en monográfico, dossier, obras, arquitectos, lugares, del mes, artículos, temas y notas. Probá con menos palabras, o abrí <b>Índices</b> para ver todo lo cargado.</p>';
+    return;
+  }
+  const LIM = 60;
+  $('icards').innerHTML = res.slice(0, LIM).map(r => {
+    const i = r.i;
+    const works = allWorks(i).filter(w => matches(wtxt(w), clauses)).slice(0, 4);
+    const tg = (i.topics || []).map(t => hl(t, clauses)).join(' · ');
+    const extra = [];
+    if (i.cult && matches(i.cult, clauses)) extra.push('<span class="nt"><small>artículos:</small> ' + hl(snippet(i.cult, clauses), clauses) + '</span>');
+    if (i.notes && matches(i.notes, clauses)) extra.push('<span class="nt"><small>notas:</small> ' + hl(snippet(i.notes, clauses), clauses) + '</span>');
     return '<button class="icard" data-m="' + esc(r.m.id) + '" data-n="' + r.n + '">'
       + '<span class="ih"><span class="im">' + esc(r.m.name) + '</span><b>Nº ' + r.n + '</b></span>'
-      + (r.i.name ? '<span class="it" style="display:block">' + hl(r.i.name + (r.i.sub ? '. ' + r.i.sub : ''), toks) + '</span>' : '')
-      + (r.i.dossier ? '<span class="ds">Dossier: ' + hl(r.i.dossier, toks) + '</span>' : '')
-      + allWorks(r.i).filter(w => toks.some(t => norm(wtxt(w)).includes(t))).slice(0, 4)
-          .map(w => '<span class="wk">' + hl(w.n || '', toks) + (w.a || w.l ? ' — ' + hl([w.a, w.l].filter(Boolean).join(', '), toks) : '') + '</span>').join('')
-      + (tg ? '<span class="tg" style="display:block">' + tg + '</span>' : '')
-      + (nt ? '<span class="nt" style="display:block">' + hl(nt, toks) + '</span>' : '')
-      + (r.i.read ? '<span class="st">LEÍDA</span>' : '') + '</button>';
-  }).join('');
+      + (i.name || i.sub ? '<span class="it">' + hl([i.name, i.sub].filter(Boolean).join('. '), clauses) + '</span>' : '')
+      + (i.dossier ? '<span class="ds">Dossier: ' + hl(i.dossier, clauses) + '</span>' : '')
+      + works.map(w => '<span class="wk">' + hl(w.n || '—', clauses) + (w.a || w.l ? ' — ' + hl([w.a, w.l].filter(Boolean).join(', '), clauses) : '')
+          + (w.s !== 'mono' ? ' <small>(' + esc(w.s) + ')</small>' : '') + '</span>').join('')
+      + (tg ? '<span class="tg">' + tg + '</span>' : '')
+      + extra.join('')
+      + (i.read ? '<span class="st">LEÍDA</span>' : '') + '</button>';
+  }).join('') + (res.length > LIM ? '<p class="noresult">…y ' + (res.length - LIM) + ' más: se ven iluminadas en el estante.</p>' : '');
 }
 function render() {
   const m = curMag();
@@ -950,12 +1130,52 @@ function render() {
     const doScroll = exact != null && q !== lastScrollQ; lastScrollQ = q;
     renderShelf(n => passF(n) && String(n).includes(q), true, doScroll ? exact : null);
   } else {
-    const {res, toks} = search();
-    const set = new Set(res.filter(r => r.m === m).map(r => r.n));
-    renderDrawer(res, toks);
+    const s = search();
+    const set = new Set(s.res.filter(r => r.m === m).map(r => r.n));
+    renderDrawer(s);
     renderShelf(n => set.has(n), true);
   }
 }
+
+/* ================= índices ================= */
+const splitArq = s => String(s || '').split(/\s*[,;\/]\s*/).map(x => x.trim()).filter(Boolean);
+const splitLug = s => String(s || '').split(/\s*[,;\/]\s*/).map(x => x.trim()).filter(Boolean);
+function buildIndex(kind) {
+  const map = new Map();
+  const add = (name, m, n) => {
+    const key = norm(name).replace(/\s+/g, ' ');
+    if (!key) return;
+    if (!map.has(key)) map.set(key, {name, refs: new Map()});
+    const e = map.get(key), rk = m.id + ':' + n;
+    if (!e.refs.has(rk)) e.refs.set(rk, {m, n});
+  };
+  for (const m of visibleMags()) for (const [k, i] of Object.entries(m.issues)) {
+    if (+k < m.min || +k > m.max) continue;
+    if (kind === 'tema') for (const t of (i.topics || [])) add(t, m, +k);
+    else for (const w of allWorks(i)) for (const x of (kind === 'arq' ? splitArq(w.a) : splitLug(w.l))) add(x, m, +k);
+  }
+  return [...map.values()].sort((a, b) => a.name.localeCompare(b.name, 'es', {sensitivity: 'base'}));
+}
+let idxKind = 'arq';
+function renderIndex() {
+  const list = buildIndex(idxKind), f = norm($('xFilter').value.trim()), multi = visibleMags().length > 1;
+  document.querySelectorAll('#idxTabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === idxKind));
+  const rows = list.filter(e => !f || norm(e.name).includes(f));
+  if (!rows.length) {
+    $('idxList').innerHTML = '<p class="hint" style="padding:10px 0">' + (list.length ? 'Nada con ese filtro.' : 'Todavía no hay ' + {arq: 'arquitectos', lugar: 'lugares', tema: 'temas'}[idxKind] + ' cargados en las fichas.') + '</p>';
+    return;
+  }
+  let h = '', letter = '';
+  for (const e of rows) {
+    const L = norm(e.name)[0].toUpperCase();
+    if (L !== letter) { letter = L; h += '<div class="guide"><span>' + esc(L) + '</span></div>'; }
+    const refs = [...e.refs.values()].sort((a, b) => (a.m.c || 0) - (b.m.c || 0) || b.n - a.n);
+    h += '<div class="irow"><button class="iname" data-q="' + esc(e.name) + '">' + esc(e.name) + '</button><span class="irefs">'
+      + refs.map(r => '<button class="iref" data-m="' + esc(r.m.id) + '" data-n="' + r.n + '">' + (multi ? esc(abbr(r.m.name)) + ' ' : '') + r.n + '</button>').join('') + '</span></div>';
+  }
+  $('idxList').innerHTML = h;
+}
+function openIndex(kind) { if (kind) idxKind = kind; $('xFilter').value = ''; renderIndex(); $('dlgIndex').showModal(); }
 
 /* ================= ficha ================= */
 let cur = {mag: null, n: null};
@@ -968,6 +1188,8 @@ function openIssue(mid, n) {
   $('iDossier').value = i.dossier || ''; $('iCult').value = i.cult || '';
   $('iTopics').value = (i.topics || []).join(', '); $('iNotes').value = i.notes || '';
   fillWorks($('iWorks'), i.works); fillWorks($('iDWorks'), i.dworks);
+  $('dlArq').innerHTML = buildIndex('arq').map(e => '<option value="' + esc(e.name) + '">').join('');
+  $('dlLug').innerHTML = buildIndex('lugar').map(e => '<option value="' + esc(e.name) + '">').join('');
   $('iMes').innerHTML = MES.map(([k, lab]) => workRow((i.mes || {})[k] || {}, lab)).join('');
   refreshSeal(false); refreshIssueCover(); suggest();
   $('dlgIssue').showModal();
@@ -1011,8 +1233,8 @@ function workRow(w, label) {
   return '<div class="work' + (label ? ' lab' : '') + '">' + (label ? '<span class="wlab">' + label + '</span>' : '')
     + '<input class="wn" placeholder="' + (label ? label.toLowerCase() + ' del mes' : 'obra') + '"' + v(w.n) + ' aria-label="Obra">'
     + (label ? '' : '<button type="button" class="wx" aria-label="Quitar obra">×</button>')
-    + '<input class="wa" placeholder="arquitectos"' + v(w.a) + ' aria-label="Arquitectos">'
-    + '<input class="wl" placeholder="lugar"' + v(w.l) + ' aria-label="Lugar"></div>';
+    + '<input class="wa" list="dlArq" placeholder="arquitectos"' + v(w.a) + ' aria-label="Arquitectos">'
+    + '<input class="wl" list="dlLug" placeholder="lugar"' + v(w.l) + ' aria-label="Lugar"></div>';
 }
 function fillWorks(el, works) { el.innerHTML = (works && works.length ? works : [{}]).map(w => workRow(w)).join(''); }
 function readWorks(el) {
@@ -1127,7 +1349,26 @@ $('icards').addEventListener('click', e => {
   if (c.dataset.m !== ui.cur) { ui.cur = c.dataset.m; saveUI(); render(); }
   openIssue(c.dataset.m, +c.dataset.n);
 });
-$('q').addEventListener('input', function () { ui.q = this.value; render(); });
+let qTimer = null;
+$('q').addEventListener('input', function () { ui.q = this.value; clearTimeout(qTimer); qTimer = setTimeout(render, 90); });
+$('q').addEventListener('keydown', e => { if (e.key === 'Escape' && ui.q) { $('q').value = ui.q = ''; render(); } });
+$('bIndex').onclick = () => openIndex();
+$('bHelp').onclick = () => { const h = $('helpCard'); h.classList.toggle('hidden'); $('bHelp').setAttribute('aria-pressed', !h.classList.contains('hidden')); };
+$('helpCard').addEventListener('click', e => { const b = e.target.closest('[data-try]'); if (!b) return; $('q').value = ui.q = b.dataset.try; ui.all = true; saveUI(); render(); $('q').focus(); });
+$('idxTabs').addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) { idxKind = b.dataset.k; renderIndex(); } });
+$('xFilter').addEventListener('input', renderIndex);
+$('idxClose').onclick = () => $('dlgIndex').close();
+$('idxList').addEventListener('click', e => {
+  const r = e.target.closest('.iref');
+  if (r) { $('dlgIndex').close(); if (r.dataset.m !== ui.cur) { ui.cur = r.dataset.m; saveUI(); render(); } openIssue(r.dataset.m, +r.dataset.n); return; }
+  const nm = e.target.closest('.iname');
+  if (nm) {
+    const key = {arq: 'arq', lugar: 'lugar', tema: 'tema'}[idxKind], v = nm.dataset.q;
+    $('q').value = ui.q = key + ':' + (/\s/.test(v) ? '"' + v + '"' : v);
+    ui.all = true; saveUI(); $('dlgIndex').close(); render();
+    $('drawer').scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+});
 $('qClear').onclick = () => { $('q').value = ui.q = ''; render(); $('q').focus(); };
 $('cloud').addEventListener('click', e => {
   const b = e.target.closest('[data-tag]'); if (!b) return;
